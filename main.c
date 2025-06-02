@@ -21,7 +21,7 @@ int	init(t_sl *sl)
 	return (0);
 }
 
-int32_t main(void)
+int32_t main(int argc, char **argv)
 {
     t_sl *sl = malloc(sizeof(t_sl));  // Allocate memory for sl
 
@@ -29,6 +29,17 @@ int32_t main(void)
         // Handle memory allocation failure
         return 1;  // Or appropriate error handling
     }
+
+	if (argc != 2) {
+		ft_printf("Usage: %s <map_file>\n", argv[0]);
+		return 1;
+	}
+	if (validate_map(argv[1])) {
+		ft_printf("Map Validation passed.\n");
+	} else {
+		ft_printf("Map Validation failed.\n");
+		error();
+	}
 
 	init(sl);
 	// Start mlx

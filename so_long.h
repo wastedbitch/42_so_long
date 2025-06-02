@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include "MLX42/MLX42.h"
 # include "lib/libft/libft.h"
+# include "lib/ft_printf/ft_printf.h"
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -32,6 +33,9 @@ typedef struct s_map {
     int x;
     int y;
 } t_map;
+
+
+int validate_map(const char *mapfile);
 
 #endif
 
