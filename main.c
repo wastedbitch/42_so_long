@@ -34,16 +34,29 @@ int32_t main(int argc, char **argv)
 		ft_printf("Usage: %s <map_file>\n", argv[0]);
 		return 1;
 	}
-	if (validate_map(argv[1])) {
+
+    char *map_file = argv[1];
+
+	if (validate_map(map_file)) {
 		ft_printf("Map Validation passed.\n");
 	} else {
 		ft_printf("Map Validation failed.\n");
 		error();
 	}
 
+    t_map *map = load_map(map_file);
+
+    if (map) {
+        for (int i = 0; i < map->height; i++) {
+            printf("%s\n", map->tiles[i]);
+        }
+    }
+
+
+
 	init(sl);
 	// Start mlx
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "Color Game", false);
+	mlx_t* mlx = mlx_init((map->width * (sl->tile_size * sl->tile_scale)), (map->height * (sl->tile_size * sl->tile_scale)), "Color Game", false);
 	if (!mlx)
 		error();
 
@@ -79,7 +92,7 @@ int32_t main(int argc, char **argv)
 
 	mlx_delete_image(mlx, img);
 	mlx_delete_texture(texture);
-	
+	free_map(map);
 	// Optional, terminate will clean up any leftover images (not textures!)
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

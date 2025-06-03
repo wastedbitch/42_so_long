@@ -30,12 +30,18 @@ typedef struct s_tiles {
 
 
 typedef struct s_map {
-    int x;
-    int y;
+    char **tiles;
+    int width;
+    int height;
+    int player_x;
+    int player_y;
 } t_map;
 
 
+
 int validate_map(const char *mapfile);
+t_map *load_map(const char *filename);
+void free_map(t_map *map);
 
 #endif
 
