@@ -21,21 +21,39 @@
 # define DARROW 125
 # define RARROW 124
 
-typedef struct s_tiles {
-    int     amount_x_tiles;
-    int     amount_y_tiles;
-    int     tile_size;
-    float   tile_scale;
-} t_sl;
-
-
-typedef struct s_map {
-    char **tiles;
-    int width;
-    int height;
-    int player_x;
-    int player_y;
+typedef struct	s_map {
+	const char	*filename;
+	char	**tiles;
+	int		width;
+	int		height;
 } t_map;
+
+typedef struct s_img {
+	void	*bg;
+	void	*wall;
+	void	*collectible;
+	void	*player;
+	void	*enemy;
+	void	*exit;
+}   t_img;
+
+typedef struct	s_player {
+	int	x;
+	int	y;
+} t_player;
+
+
+
+typedef struct s_game {
+	void		*mlx;
+	void		*window;
+	t_img		img;
+	t_player	player;
+	t_map		map;
+	int		tile_size;
+	float	tile_scale;
+	int		moves;
+}	t_game;
 
 
 
