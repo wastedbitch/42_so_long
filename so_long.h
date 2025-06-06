@@ -64,20 +64,66 @@ void free_map(t_map *map);
 #endif
 
 
-// map size x/y - tile
-// tile size - pixel
-// tile scale - float
-// window size x/y - pixel
-// map
+// 1. STUFF TO INIT
+// - validate map
+// - load map
+// - load mlx
+// - load images
+// - init window
 
-// player x/y 
-// counter
-// collected
+// 2. GAME LOOP
+// - draw map to window
+// - draw collectibles
+// - draw enemies
+// - draw player
+// - move enemies
+// - if collectibles are collected draw exit
+// - player killed or exit reached exit game
 
-// todo:
-// -assets
-//     -fish all directions
-//     -collectible
-//     -wallz
-// -make structs
-// -map parsing/validation
+
+
+// LAYERS:
+// 5. Player - drawn every frame
+// 4. EXIT - drawn once all collectibles are collected
+// 3. ENEMIES - Drawn every fram & moving ever 2 seconds 
+// 2. Collecitbels - drawn every frame is not picked up
+// 1. Walls - drawn once on game start
+// 0. BG - drawn once on game start
+
+
+// NEXT TASKS:
+// load .xmp to files
+// display backgorund & walls
+
+// dipsplay player, collectibles & enemies
+
+// player movement
+
+// get collectibles & display exit
+
+// enemie movement
+
+// animations ??
+
+// fix bugs & norm & map validation edge cases YAY !!! :333
+
+// & never KILL yo self !
+
+
+
+// PROJECT STRUCTURE:
+// main.c
+// map_val.c - map valiation obv
+// map_init.c - map parcing & loading
+// img_init.c - loading all imgs
+// gmae_init.c - game initialisation duh
+// fish.c - player movement
+// alien.c - enemie movement
+// cex.c - collectibles & exit
+// maps
+// assets
+// lib
+
+
+
+// idk meow
