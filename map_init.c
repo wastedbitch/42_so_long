@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 15:52:11 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/03 16:10:36 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/06/08 15:10:00 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,56 +17,60 @@
 
 #define MAX_LINE_LENGTH 1024
 
-typedef struct {
-    char **tiles;
-    int width;
-    int height;
-} Map;
+static char	**read_map_lines(FILE *file, int *width, int *height)
+{
+	char	line[MAX_LINE_LENGTH];
+	char	**rows;
+	char	**temp;
+	int		len;
 
-t_map *load_map(const char *filename) {
-    FILE *file = fopen(filename, "r");
-    if (!file) {
-        perror("Failed to open map file");
-        return NULL;
-    }
-
-
-
-    t_map *map = malloc(sizeof(t_map));
-
-    // if (map == NULL) {
-    //     return 1;
-
-    map->height = 0;
-    map->width = 0;
-
-    char line[MAX_LINE_LENGTH];
-    char **rows = NULL;
-
-    while (fgets(line, sizeof(line), file)) {
-        int len = strcspn(line, "\r\n"); // remove newline chars
-        line[len] = '\0';
-
-        if (map->width == 0)
-            map->width = len;
-
-        rows = realloc(rows, sizeof(char*) * (map->height + 1));
-        rows[map->height] = malloc(map->width + 1);
-        strcpy(rows[map->height], line);
-
-        map->height++;
-    }
-
-    map->tiles = rows;
-
-    fclose(file);
-    return map;
+	rows = NULL;
+	*width = 0;
+	*height = 0;
+	while (fgets(line, sizeof(line), file))
+	{
+		len = strcspn(line, "\r\n");
+		line[len] = '\0';
+		if (*width == 0)
+			*width = len;
+		else if (len != *width)
+			return (NULL);
+		temp = realloc(rows, sizeof(char *) * (*height + 1));
+		if (!temp)
+			return (NULL);
+		rows = temp;
+		rows[*height] = malloc(len + 1);
+		if (!rows[*height])
+			return (NULL);
+		strcpy(rows[*height], line);
+		(*height)++;
+	}
+	return (rows);
 }
 
-void free_map(t_map *map) {
-    for (int i = 0; i < map->height; i++) {
-        free(map->tiles[i]);
-    }
-    free(map->tiles);
-    free(map);
+int	load_map_into(t_map *map)
+{
+	FILE	*file;
+
+	file = fopen(map->filename, "r");
+	if (!file)
+		return (perror("fopen"), 1);
+	map->tiles = read_map_lines(file, &map->width, &map->height);
+	fclose(file);
+	if (!map->tiles)
+		return (ft_printf("Failed to read map lines\n"), 1);
+	return (0);
+}
+
+void	free_map_tiles(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->tiles[i]);
+		i++;
+	}
+	free(map->tiles);
 }

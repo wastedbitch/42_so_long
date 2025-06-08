@@ -10,16 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
-int32_t main(int argc, char **argv)
+int32_t	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 
-	if (argc == 2)
+	if (argc != 2)
 	{
-		game.map.filename = argv[1];
-		validate_map(game.map.filename);
+		ft_printf("Missing map file\n");
+		return (1);
 	}
-	return 0;
+	game.map.filename = argv[1];
+	game.moves = 0;
+	if (validate_map(game.map.filename) != 0)
+		return (1);
+	if (load_map_into(&game.map) != 0)
+		return (1);
+	ft_printf("Map loaded successfully\n");
+	print_map(&game.map);
+
+	init_mlx(&game);
+	if (!game.mlx)
+	{
+		ft_printf("Failed to initialize MLX\n");
+		return (1);
+	}
+	img_init(&game);
+	draw_map(&game);
+	ft_printf("yay");
+	mlx_loop(game.mlx);
+	return (0);
 }

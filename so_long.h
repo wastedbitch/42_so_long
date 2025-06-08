@@ -57,10 +57,12 @@ typedef struct s_game {
 
 
 
-int validate_map(const char *mapfile);
-t_map *load_map(const char *filename);
-void free_map(t_map *map);
-
+int		validate_map(const char *mapfile);
+int		load_map_into(t_map *map);
+void	img_init(t_game *game);
+int		init_mlx(t_game *game);
+void	print_map(t_map *map);
+void	draw_map(t_game *game);
 #endif
 
 

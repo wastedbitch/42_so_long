@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 # Sources and objects
-SRCS_SL = main.c map_val.c map_init.c
+SRCS_SL = main.c map_val.c map_init.c img_init.c mlx_init.c utils.c map_draw.c
 OBJS_SL = $(SRCS_SL:.c=.o)
 LIBFT_DIR = lib/libft
 LIBFT_REPO = https://github.com/wastedbitch/42_libft
@@ -46,8 +46,8 @@ $(FT_PRINTF_DIR)/libftprintf.a:
 
 # Compile SO_LONG
 $(EXEC_SL): $(MLX) $(LIBFT) $(FT_PRINTF) $(OBJS_SL)
-	$(CC) $(CFLAGS) $(OBJS_SL) -o $(EXEC_SL) -L$(LIBFT_DIR) -L$(FT_PRINTF_DIR) -L$(MLX_DIR)/build -lft -lftprintf -lmlx42 -lglfw
-	# $(CC) $(CFLAGS) $(OBJS_SL) -o $(EXEC_SL) -L$(LIBFT_DIR) -L$(FT_PRINTF_DIR) -L$(MLX_DIR)/build -L/opt/homebrew/lib -lft -lftprintf -lmlx42 -lglfw
+	# $(CC) $(CFLAGS) $(OBJS_SL) -o $(EXEC_SL) -L$(LIBFT_DIR) -L$(FT_PRINTF_DIR) -L$(MLX_DIR)/build -lft -lftprintf -lmlx42 -lglfw
+	$(CC) $(CFLAGS) $(OBJS_SL) -o $(EXEC_SL) -L$(LIBFT_DIR) -L$(FT_PRINTF_DIR) -L$(MLX_DIR)/build -L/opt/homebrew/lib -lft -lftprintf -lmlx42 -lglfw
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(MLX_DIR)/include -c $< -o $@
