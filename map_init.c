@@ -6,14 +6,12 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 15:52:11 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/08 15:10:00 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/06/08 18:49:25 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "so_long.h"
+#include <string.h>
 
 #define MAX_LINE_LENGTH 1024
 
