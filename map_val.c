@@ -72,7 +72,7 @@ int	validate_map(const char *mapfile)
 	line_len = -1;
 	while (fgets(line, sizeof(line), file))
 	{
-		len = strlen(line);
+		len = ft_strlen(line);
 		if (line[len - 1] == '\n')
 			line[--len] = '\0';
 		if (line_len == -1)
