@@ -45,9 +45,21 @@ $(FT_PRINTF_DIR)/libftprintf.a:
 	$(MAKE) -C $(FT_PRINTF_DIR)
 
 # Compile SO_LONG
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+	MLX_LINK = -L$(MLX_DIR)/build -lmlx42 -lglfw -ldl -lX11 -lpthread -lXrandr -lXi
+endif
+
+ifeq ($(UNAME_S),Darwin)
+	MLX_LINK = -L$(MLX_DIR)/build -L/opt/homebrew/lib -lmlx42 -lglfw
+endif
+
+# Your target
 $(EXEC_SL): $(MLX) $(LIBFT) $(FT_PRINTF) $(OBJS_SL)
-	$(CC) $(CFLAGS) $(OBJS_SL) -o $(EXEC_SL) -L$(LIBFT_DIR) -L$(FT_PRINTF_DIR) -L$(MLX_DIR)/build -lft -lftprintf -lmlx42 -lglfw
-	# $(CC) $(CFLAGS) $(OBJS_SL) -o $(EXEC_SL) -L$(LIBFT_DIR) -L$(FT_PRINTF_DIR) -L$(MLX_DIR)/build -L/opt/homebrew/lib -lft -lftprintf -lmlx42 -lglfw
+	$(CC) $(CFLAGS) $(OBJS_SL) -o $(EXEC_SL) \
+		-L$(LIBFT_DIR) -L$(FT_PRINTF_DIR) \
+		$(MLX_LINK) -lft -lftprintf
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(MLX_DIR)/include -c $< -o $@
