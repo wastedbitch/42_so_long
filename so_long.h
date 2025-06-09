@@ -7,8 +7,6 @@
 # include "lib/libft/libft.h"
 # include "lib/ft_printf/ft_printf.h"
 
-# define WIDTH 1920
-# define HEIGHT 1080
 # define TILE_W 42
 # define TILE_H 42
 # define ESC 53
@@ -66,7 +64,7 @@ void	print_map(t_map *map);
 void	draw_bg(t_game *game);
 void	draw_walls(t_game *game);
 void	draw_player(t_game *game);
-
+void 	handle_input (mlx_key_data_t keydata, void *param);
 #endif
 
 
@@ -126,7 +124,5 @@ void	draw_player(t_game *game);
 // maps
 // assets
 // lib
-
-
 
 // idk meow

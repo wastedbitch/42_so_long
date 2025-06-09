@@ -42,6 +42,7 @@ int32_t	main(int argc, char **argv)
 	draw_walls(&game);
 	draw_player(&game);
 	ft_printf("yay");
+	mlx_key_hook(game.mlx, handle_input, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
