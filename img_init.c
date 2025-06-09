@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/08 18:47:32 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/09 15:16:15 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/06/09 16:24:37 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ mlx_image_t	*load_image(void *mlx, const char *path)
 }
 
 
-void	img_init(t_game *game)
+void	init_img(t_game *game)
 {
 	game->img.bg = load_image(game->mlx, "img/bg.png");
 	game->img.wall = load_image(game->mlx, "img/wall.png");

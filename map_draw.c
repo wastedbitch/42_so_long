@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/08 18:46:25 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/09 15:41:32 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/06/09 16:27:09 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	draw_bg(t_game *game)
 	if (!game || !game->img.bg || !game->mlx)
 		return ;
 
-	mlx_resize_image(game->img.bg, (game->tile_size * game->tile_scale), (game->tile_size * game->tile_scale));
+	// mlx_resize_image(game->img.bg, (game->tile_size * game->tile_scale), (game->tile_size * game->tile_scale));
 	y = 0;
 	while (y < game->map.height)
 	{
@@ -42,10 +42,10 @@ void	draw_walls(t_game *game)
 	int	x;
 	int	y;
 
-	if (!game || !game->img.bg || !game->mlx)
+	if (!game || !game->img.wall || !game->mlx)
 		return ;
 
-	mlx_resize_image(game->img.bg, (game->tile_size * game->tile_scale), (game->tile_size * game->tile_scale));
+	// mlx_resize_image(game->img.wall, (game->tile_size * game->tile_scale), (game->tile_size * game->tile_scale));
 	y = 0;
 	x = 0;
 	while (y < game->map.height)
@@ -65,4 +65,13 @@ void	draw_walls(t_game *game)
 		}
 		y++;
 	}
+}
+
+void	draw_player(t_game *game)
+{
+	if (!game || !game->img.player || !game->mlx)
+		return ;
+
+	mlx_resize_image(game->img.player, (game->tile_size * game->tile_scale), (game->tile_size * game->tile_scale));
+	mlx_image_to_window(game->mlx, game->img.player, game->player.x * (game->tile_size * game->tile_scale), game->player.y * (game->tile_size * game->tile_scale));
 }

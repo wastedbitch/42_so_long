@@ -59,11 +59,13 @@ typedef struct s_game {
 
 int		validate_map(const char *mapfile);
 int		load_map_into(t_map *map);
-void	img_init(t_game *game);
+void	init_img(t_game *game);
 int		init_mlx(t_game *game);
+void	init_player(t_game *game);
 void	print_map(t_map *map);
 void	draw_bg(t_game *game);
 void	draw_walls(t_game *game);
+void	draw_player(t_game *game);
 
 #endif
 
