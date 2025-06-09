@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/04 17:31:58 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/04 17:40:01 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/06/09 15:38:19 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int32_t	main(int argc, char **argv)
 		return (1);
 	}
 	img_init(&game);
-	draw_map(&game);
+	draw_bg(&game);
+	draw_walls(&game);
 	ft_printf("yay");
 	mlx_loop(game.mlx);
 	return (0);

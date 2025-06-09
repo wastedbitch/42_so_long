@@ -62,7 +62,9 @@ int		load_map_into(t_map *map);
 void	img_init(t_game *game);
 int		init_mlx(t_game *game);
 void	print_map(t_map *map);
-void	draw_map(t_game *game);
+void	draw_bg(t_game *game);
+void	draw_walls(t_game *game);
+
 #endif
 
 
@@ -94,9 +96,6 @@ void	draw_map(t_game *game);
 
 
 // NEXT TASKS:
-// load .xmp to files
-// display backgorund & walls
-
 // dipsplay player, collectibles & enemies
 
 // player movement

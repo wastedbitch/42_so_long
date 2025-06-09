@@ -44,7 +44,7 @@ $(FT_PRINTF_DIR)/libftprintf.a:
 	fi
 	$(MAKE) -C $(FT_PRINTF_DIR)
 
-# Compile SO_LONG
+# Compile SO_LONG based on OS
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
