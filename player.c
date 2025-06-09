@@ -26,9 +26,9 @@ void	init_player(t_game *game)
 		{
 			if (game->map.tiles[y][x] == 'P')
 			{
-                game->player.x = x;
-                game->player.y = y;
-                return;
+				game->player.x = x;
+				game->player.y = y;
+				return;
 			}
 			// ft_printf("%c\n", game->map.tiles[y][x]);
 			x++;
