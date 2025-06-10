@@ -38,8 +38,12 @@ int32_t	main(int argc, char **argv)
 	}
 	init_img(&game);
 	init_player(&game);
+	game.items = 0;
 	draw_bg(&game);
 	draw_walls(&game);
+	draw_enemy(&game);
+	draw_collectible(&game);
+	draw_exit(&game);
 	draw_player(&game);
 	ft_printf("yay");
 	mlx_key_hook(game.mlx, handle_input, &game);

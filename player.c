@@ -40,11 +40,22 @@ void	init_player(t_game *game)
 void move_player(t_game *game, int dx, int dy) {
 	if (game->map.tiles[game->player.y + dy][game->player.x + dx] == '1')
 		return;
+	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'X')
+		mlx_close_window(game->mlx);
+	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'E' && game->items == 0)
+		mlx_close_window(game->mlx);
 	else {
+		if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'C')
+		{
+			game->map.tiles[game->player.y + dy][game->player.x + dx] = '0';
+		}
 		game->player.x = game->player.x + dx;
 		game->player.y = game->player.y + dy;
 		draw_bg(game);
 		draw_walls(game);
+		draw_enemy(game);
+		draw_collectible(game);
+		draw_exit(game);
 		draw_player(game);
 		game->moves++;
 	}

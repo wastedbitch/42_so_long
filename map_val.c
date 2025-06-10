@@ -22,6 +22,7 @@ int		collectibles = 0;
 int		reachable_c = 0;
 int		exit_found = 0;
 int		exit_count = 0;
+int		enemy_count = 0;
 int		player_found = 0;
 int		player_x = -1;
 int		player_y = -1;
@@ -95,7 +96,7 @@ int	validate_map(const char *mapfile)
 		while (i < len)
 		{
 			if (line[i] != '1' && line[i] != '0' && line[i] != 'P'
-				&& line[i] != 'C' && line[i] != 'E')
+				&& line[i] != 'C' && line[i] != 'E' && line[i] !='X')
 				return (ft_printf("Invalid char '%c'\n", line[i]),
 					fclose(file), 1);
 			if (line[i] == 'P')
@@ -111,6 +112,8 @@ int	validate_map(const char *mapfile)
 				collectibles++;
 			else if (line[i] == 'E')
 				exit_count++;
+			else if (line[i] == 'X')
+				enemy_count++;
 			map[rows][i] = line[i];
 			i++;
 		}

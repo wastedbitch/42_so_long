@@ -40,22 +40,19 @@ typedef struct	s_player {
 	int	y;
 } t_player;
 
-
-
 typedef struct s_game {
 	void		*mlx;
 	void		*window;
 	t_img		img;
 	t_player	player;
 	t_map		map;
-	int		tile_size;
-	float	tile_scale;
-	int		moves;
+	int			tile_size;
+	float		tile_scale;
+	int			moves;
+	int			items;
 }	t_game;
 
-
-
-int		validate_map(const char *mapfile);
+int		validate_map(const char *filename);
 int		load_map_into(t_map *map);
 void	init_img(t_game *game);
 int		init_mlx(t_game *game);
@@ -64,6 +61,9 @@ void	print_map(t_map *map);
 void	draw_bg(t_game *game);
 void	draw_walls(t_game *game);
 void	draw_player(t_game *game);
+void	draw_enemy(t_game *game);
+void	draw_collectible(t_game *game);
+void	draw_exit(t_game *game);
 void 	handle_input (mlx_key_data_t keydata, void *param);
 #endif
 
