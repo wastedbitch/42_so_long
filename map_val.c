@@ -134,6 +134,5 @@ int	validate_map(const char *mapfile)
 		return (ft_printf("Unreachable collectibles\n"), 1);
 	if (!exit_found)
 		return (ft_printf("Exit not reachable\n"), 1);
-	ft_printf("Map is valid\n");
 	return (0);
 }

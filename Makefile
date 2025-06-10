@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 # Sources and objects
-SRCS_SL = main.c map_val.c map_init.c img_init.c mlx_init.c utils.c map_draw.c player.c
+SRCS_SL = main.c map_val.c map_init.c img_init.c mlx_init.c map_draw.c player.c
 OBJS_SL = $(SRCS_SL:.c=.o)
 LIBFT_DIR = lib/libft
 LIBFT_REPO = https://github.com/wastedbitch/42_libft

@@ -27,8 +27,6 @@ int32_t	main(int argc, char **argv)
 		return (1);
 	if (load_map_into(&game.map) != 0)
 		return (1);
-	ft_printf("Map loaded successfully\n");
-	print_map(&game.map);
 
 	init_mlx(&game);
 	if (!game.mlx)
@@ -45,7 +43,6 @@ int32_t	main(int argc, char **argv)
 	draw_collectible(&game);
 	draw_exit(&game);
 	draw_player(&game);
-	ft_printf("yay");
 	mlx_key_hook(game.mlx, handle_input, &game);
 	mlx_loop(game.mlx);
 	return (0);

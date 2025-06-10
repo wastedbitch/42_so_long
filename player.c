@@ -58,6 +58,7 @@ void move_player(t_game *game, int dx, int dy) {
 		draw_exit(game);
 		draw_player(game);
 		game->moves++;
+		ft_printf("%d\n", game->moves);
 	}
 }
 
