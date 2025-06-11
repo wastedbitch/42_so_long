@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   player_init.c                                      :+:    :+:            */
+/*   player.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/09 16:20:35 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/09 16:24:09 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/06/11 17:33:52 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <unistd.h>
 
 void	init_player(t_game *game)
 {
@@ -37,13 +38,35 @@ void	init_player(t_game *game)
 	}
 }
 
+void draw_game(t_game *game)
+{
+	draw_bg(game);
+	draw_walls(game);
+	draw_enemy(game);
+	draw_collectible(game);
+	draw_exit(game);
+	draw_player(game);
+}
+
 void move_player(t_game *game, int dx, int dy) {
 	if (game->map.tiles[game->player.y + dy][game->player.x + dx] == '1')
 		return;
 	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'X')
+	{
+		ft_printf("U DIED");
 		mlx_close_window(game->mlx);
+	}
 	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'E' && game->items == 0)
+	{
+		game->player.x = game->player.x + dx;
+		game->player.y = game->player.y + dy;
+		draw_game(game);
+		game->moves++;
+		ft_printf("YOU HAVE REACHED THE EXIT IN %d MOVES! <:3><", game->moves);
 		mlx_close_window(game->mlx);
+	}
+	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'E' && game->items != 0)
+		return;
 	else {
 		if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'C')
 		{
@@ -51,12 +74,7 @@ void move_player(t_game *game, int dx, int dy) {
 		}
 		game->player.x = game->player.x + dx;
 		game->player.y = game->player.y + dy;
-		draw_bg(game);
-		draw_walls(game);
-		draw_enemy(game);
-		draw_collectible(game);
-		draw_exit(game);
-		draw_player(game);
+		draw_game(game);
 		game->moves++;
 		ft_printf("%d\n", game->moves);
 	}
