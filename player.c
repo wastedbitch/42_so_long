@@ -31,21 +31,10 @@ void	init_player(t_game *game)
 				game->player.y = y;
 				return;
 			}
-			// ft_printf("%c\n", game->map.tiles[y][x]);
 			x++;
 		}
 		y++;
 	}
-}
-
-void draw_game(t_game *game)
-{
-	draw_bg(game);
-	draw_walls(game);
-	draw_enemy(game);
-	draw_collectible(game);
-	draw_exit(game);
-	draw_player(game);
 }
 
 void move_player(t_game *game, int dx, int dy) {

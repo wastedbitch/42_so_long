@@ -7,17 +7,9 @@
 # include "lib/libft/libft.h"
 # include "lib/ft_printf/ft_printf.h"
 
-# define TILE_W 42
-# define TILE_H 42
-# define ESC 53
-# define W 13
-# define A 0
-# define S 1
-# define D 2
-# define UARROW 126
-# define LARROW 123
-# define DARROW 125
-# define RARROW 124
+# define TILE_SIZE 42
+# define TILE_SCALE 2
+# define MAX_LINE_LENGTH 1024
 
 typedef struct	s_map {
 	const char	*filename;
@@ -64,6 +56,7 @@ void	draw_player(t_game *game);
 void	draw_enemy(t_game *game);
 void	draw_collectible(t_game *game);
 void	draw_exit(t_game *game);
+void	draw_game(t_game *game);
 void 	handle_input (mlx_key_data_t keydata, void *param);
 #endif
 

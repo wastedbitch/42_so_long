@@ -170,3 +170,13 @@ void	draw_exit(t_game *game)
 		y++;
 	}
 }
+
+void draw_game(t_game *game)
+{
+	draw_bg(game);
+	draw_walls(game);
+	draw_enemy(game);
+	draw_collectible(game);
+	draw_exit(game);
+	draw_player(game);
+}

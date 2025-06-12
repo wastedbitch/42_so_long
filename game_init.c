@@ -1,19 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   map_init.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/06/03 15:52:11 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/08 18:49:25 by aleseile      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "so_long.h"
 #include <string.h>
 
-#define MAX_LINE_LENGTH 1024
+int	init_mlx(t_game *game)
+{
+	game->tile_size = TILE_SIZE;
+	game->tile_scale = TILE_SCALE;
+	game->mlx = mlx_init((game->map.width * game->tile_size) * game->tile_scale, (game->map.height * game->tile_size) * game->tile_scale, "so_long", false);
+	if (!game->mlx)
+		return (1);
+	return (0);
+}
+
+void	init_img(t_game *game)
+{
+	game->img.bg = mlx_texture_to_image(game->mlx, mlx_load_png("textures/bg.png"));
+	game->img.wall = mlx_texture_to_image(game->mlx, mlx_load_png("textures/wall.png"));
+	game->img.collectible = mlx_texture_to_image(game->mlx, mlx_load_png("textures/collectible.png"));
+	game->img.player = mlx_texture_to_image(game->mlx, mlx_load_png("textures/player.png"));
+	game->img.enemy = mlx_texture_to_image(game->mlx, mlx_load_png("textures/enemy.png"));
+	game->img.exit = mlx_texture_to_image(game->mlx, mlx_load_png("textures/exit.png"));
+}
 
 static char	**read_map_lines(FILE *file, int *width, int *height)
 {
