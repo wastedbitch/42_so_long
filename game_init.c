@@ -15,7 +15,7 @@ void	init_img(t_game *game)
 {
 	game->img.bg = mlx_texture_to_image(game->mlx, mlx_load_png("textures/bg.png"));
 	game->img.wall = mlx_texture_to_image(game->mlx, mlx_load_png("textures/wall.png"));
-	game->img.collectible = mlx_texture_to_image(game->mlx, mlx_load_png("textures/collectible.png"));
+	game->img.col = mlx_texture_to_image(game->mlx, mlx_load_png("textures/collectible.png"));
 	game->img.player = mlx_texture_to_image(game->mlx, mlx_load_png("textures/player.png"));
 	game->img.enemy = mlx_texture_to_image(game->mlx, mlx_load_png("textures/enemy.png"));
 	game->img.exit = mlx_texture_to_image(game->mlx, mlx_load_png("textures/exit.png"));

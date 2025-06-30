@@ -21,7 +21,7 @@ typedef struct	s_map {
 typedef struct s_img {
 	void	*bg;
 	void	*wall;
-	void	*collectible;
+	void	*col;
 	void	*player;
 	void	*enemy;
 	void	*exit;
