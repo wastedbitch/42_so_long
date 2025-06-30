@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/09 16:20:35 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/11 17:33:52 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/06/30 14:25:09 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_player(t_game *game)
 			{
 				game->player.x = x;
 				game->player.y = y;
-				return;
+				return ;
 			}
 			x++;
 		}
@@ -37,15 +37,17 @@ void	init_player(t_game *game)
 	}
 }
 
-void move_player(t_game *game, int dx, int dy) {
+void	move_player(t_game *game, int dx, int dy)
+{
 	if (game->map.tiles[game->player.y + dy][game->player.x + dx] == '1')
-		return;
+		return ;
 	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'X')
 	{
 		ft_printf("U DIED");
 		mlx_close_window(game->mlx);
 	}
-	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'E' && game->items == 0)
+	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'E'
+			&& game->items == 0)
 	{
 		game->player.x = game->player.x + dx;
 		game->player.y = game->player.y + dy;
@@ -54,9 +56,11 @@ void move_player(t_game *game, int dx, int dy) {
 		ft_printf("YOU HAVE REACHED THE EXIT IN %d MOVES! <:3><", game->moves);
 		mlx_close_window(game->mlx);
 	}
-	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'E' && game->items != 0)
-		return;
-	else {
+	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'E'
+			&& game->items != 0)
+		return ;
+	else
+	{
 		if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'C')
 		{
 			game->map.tiles[game->player.y + dy][game->player.x + dx] = '0';
@@ -69,7 +73,7 @@ void move_player(t_game *game, int dx, int dy) {
 	}
 }
 
-void handle_input (mlx_key_data_t keydata, void *param)
+void	handle_input(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 

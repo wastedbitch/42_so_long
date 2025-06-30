@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/04 17:31:58 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/09 16:28:14 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/06/30 14:22:44 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int32_t	main(int argc, char **argv)
 		return (1);
 	if (load_map_into(&game.map) != 0)
 		return (1);
-
 	init_mlx(&game);
 	if (!game.mlx)
 	{
