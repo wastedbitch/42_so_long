@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/30 14:16:17 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/30 14:19:36 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/07/03 18:01:28 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,11 @@ static char	**read_map_lines(FILE *file, int *width, int *height)
 	int		len;
 
 	rows = NULL;
-	*width = 0;
-	*height = 0;
 	while (fgets(line, sizeof(line), file))
 	{
 		len = strcspn(line, "\r\n");
 		line[len] = '\0';
-		if (*width == 0)
-			*width = len;
-		else if (len != *width)
-			return (NULL);
+		*width = len;
 		temp = realloc(rows, sizeof(char *) * (*height + 1));
 		if (!temp)
 			return (NULL);

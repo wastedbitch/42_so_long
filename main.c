@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/04 17:31:58 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/30 14:22:44 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/07/03 17:46:52 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int32_t	main(int argc, char **argv)
 		return (1);
 	init_mlx(&game);
 	if (!game.mlx)
-	{
-		ft_printf("Failed to initialize MLX\n");
 		return (1);
-	}
 	init_img(&game);
 	init_player(&game);
 	game.items = 0;

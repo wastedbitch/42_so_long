@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/09 16:20:35 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/30 14:25:09 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/07/03 18:00:59 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ void	init_player(t_game *game)
 	}
 }
 
+void	move_fish(t_game *game, int dx, int dy)
+{
+	if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'C')
+	{
+		game->map.tiles[game->player.y + dy][game->player.x + dx] = '0';
+	}
+	game->player.x = game->player.x + dx;
+	game->player.y = game->player.y + dy;
+	draw_game(game);
+	game->moves++;
+	ft_printf("%d\n", game->moves);
+}
+
 void	move_player(t_game *game, int dx, int dy)
 {
 	if (game->map.tiles[game->player.y + dy][game->player.x + dx] == '1')
@@ -49,28 +62,15 @@ void	move_player(t_game *game, int dx, int dy)
 	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'E'
 			&& game->items == 0)
 	{
-		game->player.x = game->player.x + dx;
-		game->player.y = game->player.y + dy;
-		draw_game(game);
 		game->moves++;
 		ft_printf("YOU HAVE REACHED THE EXIT IN %d MOVES! <:3><", game->moves);
 		mlx_close_window(game->mlx);
 	}
 	else if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'E'
 			&& game->items != 0)
-		return ;
+		move_fish(game, dx, dy);
 	else
-	{
-		if (game->map.tiles[game->player.y + dy][game->player.x + dx] == 'C')
-		{
-			game->map.tiles[game->player.y + dy][game->player.x + dx] = '0';
-		}
-		game->player.x = game->player.x + dx;
-		game->player.y = game->player.y + dy;
-		draw_game(game);
-		game->moves++;
-		ft_printf("%d\n", game->moves);
-	}
+		move_fish(game, dx, dy);
 }
 
 void	handle_input(mlx_key_data_t keydata, void *param)

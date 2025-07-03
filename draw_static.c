@@ -6,7 +6,7 @@
 /*   By: aleseile <aleseile@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/30 13:58:59 by aleseile      #+#    #+#                 */
-/*   Updated: 2025/06/30 14:05:46 by aleseile      ########   odam.nl         */
+/*   Updated: 2025/07/03 18:00:26 by aleseile      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	draw_game(t_game *game)
 	draw_walls(game);
 	draw_enemy(game);
 	draw_collectible(game);
-	draw_exit(game);
+	if (game->items == 0)
+		draw_exit(game);
 	draw_player(game);
 }
